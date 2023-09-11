@@ -7,18 +7,22 @@ bool checkPalindrome(int sum);
 
 int main(){
   int num;
-  std::cout<<"Enter a number"<<std::endl;
-  std::cin>>num;
-  int iterations = 1;
-  num = reverseAndAdd(num);
-  bool palindrome = checkPalindrome(num);
-  while (palindrome == false){
+  int test_cases;
+  int iterations;
+  std::cout<<"Enter the number of test cases (0-100) and numbers to be tested"<<std::endl;
+  std::cin>>test_cases;
+  for (int i = 0; i < test_cases; i++){
+    std::cin>>num;
     num = reverseAndAdd(num);
-    palindrome = checkPalindrome(num);
-    iterations++;
+    iterations = 1;
+    bool palindrome = checkPalindrome(num);
+    while (palindrome == false && iterations < 1000){
+      num = reverseAndAdd(num);
+      palindrome = checkPalindrome(num);
+      iterations++;
+    }
+    std::cout<<iterations<<" "<<num<<std::endl;
   }
-  std::cout<<"Resulting palindrome: "<<num<<std::endl;
-  std::cout<<"Number of additions: "<<iterations<<std::endl;
 }
 
 bool checkPalindrome(int sum){
