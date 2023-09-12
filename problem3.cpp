@@ -2,13 +2,13 @@
 #include <string>
 #include <vector>
 
-int reverseAndAdd(int num);
-int reverseNum(int num);
-bool checkPalindrome(int sum);
+unsigned int reverseAndAdd(unsigned int num);
+unsigned int reverseNum(unsigned int num);
+bool checkPalindrome(unsigned int sum);
 void printVector(std::vector<int>);
 
 int main(){
-  int num;
+  unsigned int num;
   int test_cases;
   int iterations;
   std::cout<<"Enter the number of test cases (0-100) and numbers to be tested"<<std::endl;
@@ -27,6 +27,11 @@ int main(){
     }
     answer[0] = iterations;
     answer[1] = num;
+    if (iterations >= 1000 || num > 4294967295){
+      std::cout<<"Palindrome of could not be found."<<std::endl;
+      answer[0] = 0;
+      answer[1] = 0;
+    }
     answerVec.push_back(answer);
   }
   for (int i = 0; i < answerVec.size(); i++){
@@ -34,8 +39,8 @@ int main(){
   }
 }
 
-bool checkPalindrome(int sum){
-  int reverse = reverseNum(sum);
+bool checkPalindrome(unsigned int sum){
+  unsigned int reverse = reverseNum(sum);
     if (sum == reverse){
       return true;
     }
@@ -44,19 +49,19 @@ bool checkPalindrome(int sum){
     }
 }
 
-int reverseNum(int num){
+unsigned int reverseNum(unsigned int num){
   std::string numString= std::to_string(num);
   std::string reverseNumString;
   for (int i = numString.length()-1; i >=  0; i--){
     reverseNumString = reverseNumString + numString[i];
   }
-  int reverse = stoi(reverseNumString);
+  unsigned int reverse = stoi(reverseNumString);
   return reverse;
 }
 
-int reverseAndAdd(int num){
-  int reverse = reverseNum(num);
-  int sum =  num + reverse;
+unsigned int reverseAndAdd(unsigned int num){
+  unsigned int reverse = reverseNum(num);
+  unsigned int sum =  num + reverse;
   return sum;
 }
 
